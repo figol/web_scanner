@@ -1,0 +1,38 @@
+<templates>
+<t t-name="web_scanner">
+    <div class="oe_web_div">
+        <div class="oe_tab_header" >
+            <div class="oe_head_tab oe_tab_current">Order</div>
+        </div>
+        <div class="oe_tab_detail">
+            <div class="oe_tab_list">
+	        Sale Order : <input name="web_sale_order" size="50" type="text" id="web_sale_order" />
+	    </div>
+        </div>    
+    </div>
+</t>
+<t t-name="ScannerLinesWidget">
+    <div>
+        <table class="web_table1">
+            <thead>
+                <tr><th>Order</th><th>Order Date</th><th>Product</th><th>Quantity</th></tr>
+            </thead>
+            <tbody>
+                <t t-foreach="widget.res.order_lines" t-as="tag">
+                    <tr>
+                        <td><t t-esc="widget.res.name" /></td>
+                        <td><t t-esc="widget.res.date_order" /></td>
+                        <td><t t-esc="tag.product_id[1]" /></td>
+                        <td><t t-esc="tag.product_uom_qty" /></td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </div>
+</t>
+<t t-name="ScannerErrorDialogWidget">
+    <div class="web_scanner_hint">
+        <center><t t-esc="widget.res.message" /></center>
+    </div>
+</t>
+</templates>

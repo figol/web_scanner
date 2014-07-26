@@ -1,0 +1,39 @@
+.openerp .oe_web_div {
+    color: #666;
+    background-color: #fff;
+    height: 100%;
+    padding: 3% 0% 0% 5%;
+    font-weight: bold;
+}
+.openerp .oe_tab_header {
+    clear:both;	
+}
+/* table */
+.web_table1{
+    width: 98%;
+    border: 1px solid #ccc;
+}
+.web_table1 tr{
+    height: 28px;
+    line-height: 28px;
+    border-bottom: 1px solid #ccc;
+}
+.web_table1 th, .web_table1 td{
+    text-align: center;
+}
+.openerp .oe_head_tab {
+    margin-left:30px;
+    border:1px #ccc solid;
+    border-bottom:0px;
+    float:left;
+    padding:6px;
+    cursor: pointer;
+}
+
+.web_scanner_hint{
+    font-size: 18px;
+    font-weight: bold;
+}
+.openerp .oe_tab_current {
+    border-top:3px #666 solid;
+}

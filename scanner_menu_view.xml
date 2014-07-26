@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- define top menu for scanner -->
+	<menuitem id="menu_web_scanner" sequence="0" name="Web Scanner" />
+
+	<record model="ir.actions.client" id="action_client_scanner">
+            <field name="name">Scanner</field>
+            <field name="tag">web.scanner.action</field>
+        </record>
+
+        <menuitem action="action_client_scanner" parent="menu_web_scanner" name="Scanner" id="menu_web_scanner_1"/>
+    </data>
+</openerp>
+
