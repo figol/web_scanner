@@ -3,26 +3,26 @@ openerp.web_scanner = function (instance) {
     instance.web.client_actions.add('web.scanner.action', 'instance.web_scanner.action');
     instance.web_scanner.action = instance.web.Widget.extend({
         template: 'web_scanner',
- 	start: function () {
+ 	    start: function () {
             var self = this;
-	    /* input focus for scanning */
-	    $("#web_sale_orders").focus();
+            /* input focus for scanning */
+            $("#web_sale_order").focus();
 
             /* scanner trigger */
             $("#web_sale_order").keypress(function(e){
                 if((e.keyCode || e.which) != 13){
                     return true;
                 }
-                var order = $("#sale_order").val();
+                var order = $(this).val();
                 if(!order){
                     alert('empty input');
                     return false;
                 }
-		instance.web.blockUI();
+                instance.web.blockUI();
                 new instance.web.Model("sale.order").call("get_order_detail", [order]).then(function(res) {
-		    instance.web.unblockUI();
+                    instance.web.unblockUI();
                     if(res.state){
-                        self.fn_show_order_lines(res);
+                        self.fn_list_order_lines(res, order);
                     }else{
                         self.fn_show_errors(res);
                     }
@@ -30,7 +30,7 @@ openerp.web_scanner = function (instance) {
             });
         },
         fn_show_errors: function(res){
-            this.dialog_view = new module.ScannerErrorDialogWidget(self, {res: res});
+            this.dialog_view = new module.ScannerErrorDialogWidget(self, {msg: res.msg});
             this.dialog_view.renderElement();
             var _dialog = new instance.web.Dialog(self,{
                 title: 'Scanner Error', autoOpen:true, width:700, resizable:false, modal:true,
@@ -42,14 +42,14 @@ openerp.web_scanner = function (instance) {
                 }
             }, this.dialog_view.$el);
             _dialog.open();
-	    // focus first form button
+	        // focus first form button
             $('.oe_form_button:first').focus().addClass('oe_highlight');
         },
-        fn_list_order_lines: function(res){
+        fn_list_order_lines: function(res, order){
             this.dialog_view = new module.ScannerLinesWidget(self, {res: res});
             this.dialog_view.renderElement();
             var _dialog = new instance.web.Dialog(self,{
-                title: 'Order: '+res.name, autoOpen:true, width:700, resizable:false, modal:true,
+                title: 'Order: '+order, autoOpen:true, width:700, resizable:false, modal:true,
                 buttons:{
                     "Close": function () {
                         _dialog.destroy();
@@ -58,7 +58,7 @@ openerp.web_scanner = function (instance) {
                 }
             }, this.dialog_view.$el);
             _dialog.open();
-	    // focus first form button
+	        // focus first form button
             $('.oe_form_button:first').focus().addClass('oe_highlight');
         },
     });
@@ -72,7 +72,7 @@ openerp.web_scanner = function (instance) {
     module.ScannerErrorDialogWidget = instance.web.Widget.extend({
         template: 'ScannerErrorDialogWidget',
         init: function(parent, options){
-            this.res = options.res;
+            this.msg = options.msg;
         }
     });
 };

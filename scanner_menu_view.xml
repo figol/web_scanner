@@ -2,14 +2,15 @@
 <openerp>
     <data>
         <!-- define top menu for scanner -->
-	<menuitem id="menu_web_scanner" sequence="0" name="Web Scanner" />
+        <menuitem id="menu_web_scanner" sequence="0" name="Web Scanner" />
 
-	<record model="ir.actions.client" id="action_client_scanner">
+        <record model="ir.actions.client" id="action_client_web_scanner">
             <field name="name">Scanner</field>
             <field name="tag">web.scanner.action</field>
         </record>
 
-        <menuitem action="action_client_scanner" parent="menu_web_scanner" name="Scanner" id="menu_web_scanner_1"/>
+        <menuitem id="menu_web_scanner_1" name="Scanner1" parent="menu_web_scanner"/>
+        <menuitem id="menu_web_scanner_2" name="Scanner" parent="menu_web_scanner_1" action="action_client_web_scanner"/>
     </data>
 </openerp>
 

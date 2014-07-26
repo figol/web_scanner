@@ -6,7 +6,7 @@
     font-weight: bold;
 }
 .openerp .oe_tab_header {
-    clear:both;	
+    clear:both;
 }
 /* table */
 .web_table1{
@@ -26,10 +26,17 @@
     border:1px #ccc solid;
     border-bottom:0px;
     float:left;
-    padding:6px;
+    text-align: center;
+    padding:6px 20px 6px 20px;
     cursor: pointer;
 }
-
+.openerp .oe_tab_detail {
+	border:1px #ccc solid;
+	height:500px;
+	width:90%;
+	padding:20px;
+    clear: both;
+}
 .web_scanner_hint{
     font-size: 18px;
     font-weight: bold;

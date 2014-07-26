@@ -26,20 +26,20 @@ class sale_order(osv.osv):
 
     def get_order_detail(self, cr, uid, name):
         res = {
-	    'state': True,
+            'state': True,
             'order': {},
             'order_lines': [],
-	    'msg': ''
+            'msg': ''
         }
-	order_ids = self.search(cr, uid, [('name', '=', name)])
-	if not order_ids:
-	    res['state'] = False
-	    res['msg'] = 'No order found.'
+        order_ids = self.search(cr, uid, [('name', '=', name)])
+        if not order_ids:
+            res['state'] = False
+            res['msg'] = 'No order found.'
             return res
-    	res['order'] = self.read(cr, uid, order_ids[0], ['partner_id', 'name', 'shop_id', 'date_order', 'order_line'])
-	if res['order'].get('order_line'):
-	    order_line_obj = self.pool.get('sale.order.line')
-	    res['order_lines'] = order_line_obj.read(cr, uid, res['order']['order_line'], ['product_id', 'product_uom_qty', 'price_unit'])
-	return res
+        res['order'] = self.read(cr, uid, order_ids[0], ['partner_id', 'name', 'shop_id', 'date_order', 'order_line'])
+        if res['order'].get('order_line'):
+            order_line_obj = self.pool.get('sale.order.line')
+            res['order_lines'] = order_line_obj.read(cr, uid, res['order']['order_line'], ['product_id', 'product_uom_qty', 'price_unit'])
+        return res
 
 sale_order()
